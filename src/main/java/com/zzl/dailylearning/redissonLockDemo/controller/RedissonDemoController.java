@@ -25,7 +25,7 @@ public class RedissonDemoController {
     public String redissonTest() {
 
         boolean save = userService.save();
-        if (save){
+        if (save) {
             return "Success!";
         }
         return "filed";
@@ -40,7 +40,7 @@ public class RedissonDemoController {
             e.printStackTrace();
         }
         boolean save = userService.save();
-        if (save){
+        if (save) {
             return "Success!";
         }
         return "filed";

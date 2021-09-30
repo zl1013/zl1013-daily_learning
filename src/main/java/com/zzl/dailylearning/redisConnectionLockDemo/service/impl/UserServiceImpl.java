@@ -24,15 +24,15 @@ public class UserServiceImpl implements UserService {
     public boolean save() {
         String value = UUID.randomUUID().toString();
         log.info(Thread.currentThread().getName() + " : addUser");
-        redisTemplate.opsForValue().set(Thread.currentThread().getName(),value);
+        redisTemplate.opsForValue().set(Thread.currentThread().getName(), value);
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        if (value.equals(redisTemplate.opsForValue().get(Thread.currentThread().getName()))){
+        if (value.equals(redisTemplate.opsForValue().get(Thread.currentThread().getName()))) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }

@@ -40,28 +40,28 @@ public class RedissonLockAspect {
         RLock clientLock = redissonClient.getLock(lockPrefix.concat(lockKey).concat(lockSuffix));
         try {
             boolean locked = clientLock.tryLock(waitTime, lockTime, TimeUnit.SECONDS);
-            if (locked){
+            if (locked) {
                 log.info(Thread.currentThread().getName() + " : 获取锁成功！");
                 log.info(Thread.currentThread().getName() + " : 开始处理业务！");
                 Object proceed = joinPoint.proceed();
                 log.info(Thread.currentThread().getName() + " : 业务处理完成！");
                 return proceed;
-            }else {
+            } else {
                 log.info(Thread.currentThread().getName() + " : 获取锁失败！");
-                if (remindFailMessage){
+                if (remindFailMessage) {
                     return failMessage;
-                }else {
+                } else {
                     return null;
                 }
             }
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             return null;
         } catch (Throwable throwable) {
-            log.error("业务处理异常，信息：{}",throwable.getMessage());
+            log.error("业务处理异常，信息：{}", throwable.getMessage());
             return null;
-        }finally {
-            if (clientLock.isHeldByCurrentThread()){
+        } finally {
+            if (clientLock.isHeldByCurrentThread()) {
                 clientLock.unlock();
             }
         }
