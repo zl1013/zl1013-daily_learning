@@ -2,11 +2,15 @@ package com.zzl.dailylearning.redisConnectionLockDemo.service.impl;
 
 import com.zzl.dailylearning.redisConnectionLockDemo.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.Random;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @description:

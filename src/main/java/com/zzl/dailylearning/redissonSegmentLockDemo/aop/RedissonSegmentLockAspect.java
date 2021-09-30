@@ -1,4 +1,4 @@
-package com.zzl.dailylearning.redissonLockDemo.aop;
+package com.zzl.dailylearning.redissonSegmentLockDemo.aop;
 
 import com.zzl.dailylearning.redissonLockDemo.annotation.RedissonLockAnnotation;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 @Aspect
 @Component
 @Slf4j
-public class RedissonLockAspect {
+public class RedissonSegmentLockAspect {
 
     @Autowired
     private RedissonClient redissonClient;
